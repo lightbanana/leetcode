@@ -1,0 +1,27 @@
+name: Setup New Branch Template
+
+on:
+  create:
+
+jobs:
+  setup:
+    if: github.event.ref_type == 'branch' && github.event.ref != 'main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Copy template and Commit
+        run: |
+          # momo.mdが既に存在しないか確認
+          if [ ! -f "momo.md" ]; then
+            cp templates/momo.md momo.md
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git add momo.md
+            git commit -m "docs: add momo.md template for new branch"
+            git push origin ${{ github.event.ref }}
+          fi
