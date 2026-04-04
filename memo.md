@@ -1,3 +1,6 @@
+問題は1. Two Sum(https://leetcode.com/problems/two-sum/description/?envType=problem-list-v2&envId=xo2bgr0r)
+次に解くのは387. First Unique Character in a String(https://leetcode.com/problems/first-unique-character-in-a-string/?envType=problem-list-v2&envId=xo2bgr0r)
+
 ## Step 1
 先頭から順番に各要素について後ろにある各要素を足してtargetと比較するやり方が一番直感的に思いついたので書いてみる。各要素について線形の走査が入るので時間計算量がO(n^2)になる。想定解法ではないが一回書いてみる。
 ```python
@@ -24,9 +27,5 @@ class Solution:
             else:
                 visited[nums[i]] = i
         return answer
-
-```
-## Step 3
-```python
 
 ```
