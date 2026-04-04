@@ -16,12 +16,12 @@ jobs:
 
       - name: Copy template and Commit
         run: |
-          # momo.mdが既に存在しないか確認
-          if [ ! -f "momo.md" ]; then
-            cp templates/momo.md momo.md
+          # memo.mdが既に存在しないか確認
+          if [ ! -f "memo.md" ]; then
+            cp templates/memo.md memo.md
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git add momo.md
-            git commit -m "docs: add momo.md template for new branch"
+            git add memo.md
+            git commit -m "docs: add memo.md template for new branch"
             git push origin ${{ github.event.ref }}
           fi
