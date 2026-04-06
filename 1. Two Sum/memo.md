@@ -30,3 +30,18 @@ class Solution:
         return answer
 
 ```
+
+## Step3
+これまでもらった指摘を基に書き直してみる。
+```Python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_to_index = {}
+        for i, num in enumerate(nums):
+            complement = target - num
+            if complement in num_to_index:
+                return [num_to_index[complement], i]
+            else:
+                num_to_index[num] = i
+
+```
