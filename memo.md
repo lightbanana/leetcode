@@ -4,6 +4,9 @@
 ## Step 1
 ### 考えたこと
 - フロイドの循環検出法を見たことがあったが、とりあえず一度訪れたnodeをsetに保持しておいて、毎回確認する方法が確実なので書いてみる。
+- setの中にclassを入れることができるかわからなかったので、確認した。
+- `while True`は停止しないときが怖いので、使いたくないと感じたが、パッとループを回す方法が思いつかなかったので一度書いてみた。
+- 
 ```python
 # Definition for singly-linked list.
 # class ListNode:
@@ -27,6 +30,8 @@ class Solution:
                 current_node = current_node.next
 ```
 ## Step 2
+- 読んだコード
+https://discord.com/channels/1084280443945353267/1195700948786491403/1195944696665604156
 ```python
 
 ```
