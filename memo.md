@@ -46,6 +46,11 @@ class Solution:
             return False
 ```
 ## Step 2
+### 読んだコード
+- https://github.com/bumbuboon/Leetcode/pull/7/changes
+
+### 考えたこと
+- 先に[と]みたいにペアを作っておく。
 ```python
 
 ```
