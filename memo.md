@@ -48,13 +48,34 @@ class Solution:
 ## Step 2
 ### 読んだコード
 - https://github.com/bumbuboon/Leetcode/pull/7/changes
+- https://github.com/philip82148/leetcode-swejp/pull/11/changes
 
 ### 考えたこと
-- 先に[と]みたいにペアを作っておく。
-```python
+- 先に[と]みたいにペアを作っておく。open_to_closeのような名前のdictionary型変数がいいか。
+- return(len(stack) == 0)だと可読性が高い
+- スタックの名前がstackの代わりの名前として、open_blacketsなどがある。
+- if not stackの分岐を避けるためにあらかじめstackの中に番兵(\0などの目印)を入れておくのも有効。
 
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        open_blackets = []
+        open_to_close = {'(' : ')',
+                         '{' : '}',
+                         '[' : ']'}
+        for c in s:
+            if c in open_to_close:
+                open_blackets.append(c)
+            elif not open_blackets:
+                return False
+            else:
+                last = open_blackets.pop()
+                if open_to_close[last] != c:
+                    return False
+        return (len(open_blackets) == 0)
 ```
 ## Step 3
+番兵を使って書いてみる。
 ```python
 
 ```
