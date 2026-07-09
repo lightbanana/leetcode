@@ -53,29 +53,43 @@ class Solution:
 ### 考えたこと
 - 先に[と]みたいにペアを作っておく。open_to_closeのような名前のdictionary型変数がいいか。
 - return(len(stack) == 0)だと可読性が高い
-- スタックの名前がstackの代わりの名前として、open_blacketsなどがある。
-- if not stackの分岐を避けるためにあらかじめstackの中に番兵(\0などの目印)を入れておくのも有効。
+- スタックの名前がstackの代わりの名前として、open_bracketsなどがある。
+- if not stackの分岐を避けるためにあらかじめstackの中に番兵(Cだと\0などの目印、PythonだとNoneなどか?(->Noneだとdictにアクセスできないので#など))を入れておくのも有効。
 
 ```python
 class Solution:
     def isValid(self, s: str) -> bool:
-        open_blackets = []
+        open_brackets = []
         open_to_close = {'(' : ')',
                          '{' : '}',
                          '[' : ']'}
         for c in s:
             if c in open_to_close:
-                open_blackets.append(c)
-            elif not open_blackets:
+                open_brackets.append(c)
+            elif not open_brackets:
                 return False
             else:
-                last = open_blackets.pop()
+                last = open_brackets.pop()
                 if open_to_close[last] != c:
                     return False
-        return (len(open_blackets) == 0)
+        return (len(open_brackets) == 0)
 ```
 ## Step 3
-番兵を使って書いてみる。
-```python
+- 番兵を使って書いてみる。dictへのアクセスは結局その中にキーがあるかを確認する必要があるので、分岐の数自体は変わらないが、分岐より先にpopできるのが直感的でわかりやすい。
 
+```python
+class Solution:
+    def isValid(self, s: str) -> bool:
+        open_to_close = {'(' : ')',
+                         '{' : '}',
+                         '[' : ']'}
+        open_brackets = [None] # Put None as a sentinel
+        for bracket in s:
+            if bracket in open_to_close:
+                open_brackets.append(bracket)
+            else:
+                last = open_brackets.pop()
+                if not last or bracket != open_to_close[last]:
+                    return False
+        return (len(open_brackets) == 1) # Check only the sentinel left 
 ```
