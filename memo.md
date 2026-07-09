@@ -54,7 +54,7 @@ class Solution:
 - 先に[と]みたいにペアを作っておく。open_to_closeのような名前のdictionary型変数がいいか。
 - return(len(stack) == 0)だと可読性が高い
 - スタックの名前がstackの代わりの名前として、open_bracketsなどがある。
-- if not stackの分岐を避けるためにあらかじめstackの中に番兵(Cだと\0などの目印、PythonだとNoneなどか?(->Noneだとdictにアクセスできないので#など))を入れておくのも有効。
+- if not stackの分岐を避けるためにあらかじめstackの中に番兵(Cだと\0などの目印、PythonだとNoneなどか?)を入れておくのも有効。
 
 ```python
 class Solution:
