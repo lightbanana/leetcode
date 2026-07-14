@@ -29,10 +29,9 @@ class KthLargest:
 ### 読んだコード・考えたこと
 - https://github.com/h-masder/Arai60/pull/9/changes
 - heapを使うことで、O(logn)で値の追加、O(logn)で最小値へのアクセスが可能になるため、ソートのO(nlogn)より時間計算量を削減することができる。
-- heapはlistのサブクラスで、heap[i]の子はheap[i*2+1], heap[i*2+2]に格納されている状態。
-- heapのデータ構造の理解のためにheapを実装している。自分もheapを使ったことがないためやってみる。CPythonでのheapqライブラリは以下(https://github.com/python/cpython/blob/3.14/Lib/heapq.py)
+- heapqはheapをlistに表現したもので、heap[i]の子はheap[i*2+1], heap[i*2+2]に格納されている状態。
+- heapのデータ構造の理解のためにheapを実装している。自分もheapを使ったことがないため今度やってみる。CPythonでのheapqライブラリは以下(https://github.com/python/cpython/blob/3.14/Lib/heapq.py)
 - maxheapは3.14からのため、互換性を意識するためminheapで書く。minheapを使って最大値を根に持ってきたい場合は負の数としてから格納すればいい。
-- https://github.com/Manato110/LeetCode-arai60/pull/8/changes
 
 ```python
 class KthLargest:
