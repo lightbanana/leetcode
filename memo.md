@@ -27,7 +27,18 @@ class Solution:
 ```
 ## Step 2
 ```python
-
+class Solution:
+    def moveZeroes(self, nums: list[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        write = 0
+        for num in nums:
+            if num != 0:
+                nums[write] = num
+                write += 1
+        for i in range(write, len(nums), 1):
+            nums[i] = 0
 ```
 ## Step 3
 ```python
