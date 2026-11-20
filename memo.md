@@ -5,16 +5,19 @@
 
 ```python
 class Solution:
-    def intersection(self, nums1: list[int], nums2: list[int]) -> list[int]:
+    def numUniqueEmails(self, emails: list[str]) -> int:
         seen = set()
-        intersection = list()
-        for i, num in enumerate(nums1):
-            if num not in seen:
-                seen.add(num)
-        for i, num in enumerate(nums2):
-            if num in seen and num not in intersection:
-                intersection.append(num)
-        return intersection
+        for email in emails:
+            local_domain = email.split("@")
+            local = local_domain[0]
+            domain = local_domain[1]
+            local_duplicate = local.split("+")
+            local = local_duplicate[0]
+            local = local.replace(".", "")
+            email_origin = local + "@" + domain
+            if email_origin not in seen:
+                seen.add(email_origin)
+        return len(seen)
 ```
 ## Step 2
 ```python
