@@ -4,26 +4,27 @@
 
 ## Step 1
 ### 考えたこと
-- ナイーブにやるなら、numsを前から走査して、もう一つ配列を用意して0以外の数字を見たら前から入れていく。0の出てきた回数も数えておいて、最後に0をその個数分だけ入れる。
-- nums = nums_cpにすると、参照渡しになってしまう。
+- if p == right(left):のところ、エッジケースで慎重になるべき。
 
 ```python
 class Solution:
-    def moveZeroes(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        nums_cp = []
-        zero_count = 0
-        for _, num in enumerate(nums):
-            if num == 0:
-                zero_count += 1
-            else:
-                nums_cp.append(num)
-        for _ in range(zero_count):
-            nums_cp.append(0)
-        for i in range(len(nums)):
-            nums[i] = nums_cp[i]
+    def searchInsert(self, nums: list[int], target: int) -> int:
+        left = 0
+        right = len(nums) - 1
+        while(True):
+            p = (left + right) // 2
+            if nums[p] == target:
+                return p
+            elif nums[p] < target:
+                if p == right:
+                    return p + 1
+                else:
+                    left = p + 1
+            elif target < nums[p]:
+                if p == left:
+                    return p
+                else:
+                    right = p
 ```
 ## Step 2
 ```python
