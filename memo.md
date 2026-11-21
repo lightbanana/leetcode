@@ -1,30 +1,34 @@
-## 今回解いた問題と次に解く問題
-- 今回解いた問題:283. Move Zeroes(https://leetcode.com/problems/move-zeroes/)
-- 次に解く問題:35. Search Insert Position(https://leetcode.com/problems/search-insert-position/)
-
 ## Step 1
 ### 考えたこと
-- if p == right(left):のところ、エッジケースで慎重になるべき。
+- 深さ優先探索をしたい。実装したことがないので、とりあえずやってみる。stackに積むことだけ聞いたことがあった。
 
 ```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def searchInsert(self, nums: list[int], target: int) -> int:
-        left = 0
-        right = len(nums) - 1
-        while(True):
-            p = (left + right) // 2
-            if nums[p] == target:
-                return p
-            elif nums[p] < target:
-                if p == right:
-                    return p + 1
-                else:
-                    left = p + 1
-            elif target < nums[p]:
-                if p == left:
-                    return p
-                else:
-                    right = p
+    def maxDepth(self, root: TreeNode | None) -> int:
+        if not root:
+            return 0
+        stack = []
+        node_to_depth = dict()
+        current_node = root
+        stack.append(current_node)
+        node_to_depth[current_node] = 1
+        while stack:
+            current_node = stack.pop()
+            left = current_node.left
+            right = current_node.right
+            if left:
+               node_to_depth[left] = node_to_depth[current_node] + 1
+               stack.append(left)
+            if right:
+               node_to_depth[right] = node_to_depth[current_node] + 1
+               stack.append(right)
+        return max(node_to_depth.values())
 ```
 ## Step 2
 ```python
